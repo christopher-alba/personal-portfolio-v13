@@ -3,17 +3,28 @@
 
 .light {
   --background-color: #f5f5f5;
-  --text-color: rgb(22, 22, 22);
-  --emphasis-color-bold: red;
+  --text-color: rgb(129, 129, 129);
+  --emphasis-color-bold: rgb(255, 48, 48);
+  --emphasis-color: rgb(0, 0, 0);
 }
 
 .dark {
-  --text-color: white;
-  --background-color: #161616;
-  --emphasis-color-bold: red;
+  --text-color: rgb(190, 190, 190);
+  --background-color: #3f3f3f;
+  --emphasis-color-bold: rgb(255, 135, 135);
+  --emphasis-color: rgb(255, 255, 255);
 }
 
 body {
   background: var(--background-color);
   color: var(--text-color);
+}
+
+.emphasis-text {
+  color: var(--emphasis-color); /* Tailwind's text-black */
+}
+
+.emphasis {
+  color: var(--emphasis-color-bold);
+  text-decoration: underline;
 }
