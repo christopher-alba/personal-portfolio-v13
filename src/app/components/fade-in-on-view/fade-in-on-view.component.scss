@@ -1,0 +1,11 @@
+.fade-wrapper {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
+
+.fade-wrapper.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}

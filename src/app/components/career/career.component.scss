@@ -1,0 +1,11 @@
+.background-text {
+  font-size: 5rem;
+  font-weight: bold;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden;
+  color: var(--text-color); /* Tailwind's text-black */
+  .emphasis {
+    color: var(--emphasis-color-bold);
+  }
+}
