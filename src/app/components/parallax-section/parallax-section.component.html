@@ -1,0 +1,15 @@
+<!-- PARALLAX SECTION 1 -->
+<div class="relative">
+  <div #parallaxDivTarget>
+    <ng-content select="[static-background]"></ng-content>
+  </div>
+
+  <div class="absolute inset-0 w-full h-full">
+    <div
+      #scrollingDiv
+      class="min-h-screen w-full sticky top-0 flex flex-col items-center justify-center overflow-hidden relative"
+    >
+      <ng-content select="[scrolling-content]"></ng-content>
+    </div>
+  </div>
+</div>

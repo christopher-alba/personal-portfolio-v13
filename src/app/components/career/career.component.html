@@ -1,136 +1,135 @@
-<!-- PARALLAX SECTION 1 -->
-<div class="relative">
-  <p
-    class="text-[5rem] text-wrap break-all h-[300vh] overflow-hidden text-[var(--text-color)] opacity-10"
-  >
-    {{ code }}
-  </p>
-  <div
-    class="h-[300vh] w-full box-content absolute top-0 left-0"
-    #parallaxDivTarget
-  >
+<app-parallax-section #parallaxSection>
+  <div static-background>
     <div
-      class="w-full h-screen sticky top-0 flex flex-col items-end justify-end overflow-hidden"
-      #scrollingDiv
+      class="text-[5rem] text-wrap break-all opacity-5 text-[var(--text-color)]"
     >
-      <div class="w-full h-full flex items-center justify-center">
-        <div class="mx-auto w-[50%]">
-          <h1 class="text-[7rem] m-0 leading-25 font-bold emphasis-text">
-            <span class="emphasis">Software Engineer</span> by trade, I build enterprise scale
-            applications for work.
-          </h1>
-        </div>
-      </div>
+      {{ code }}
+    </div>
+  </div>
+
+  <div scrolling-content>
+    <div class="mx-auto w-[50%]">
+      <h1 class="text-[7rem] m-0 leading-25 font-bold emphasis-text">
+        <span class="emphasis">Software Engineer</span> by trade, I build
+        enterprise scale applications for work.
+      </h1>
+    </div>
+
+    <!-- Train -->
+    <div class="absolute bottom-0 flex items-end">
       <img
-        #svgRef
         src="train.png"
-        class="h-[120px] scale-[200%] relative bottom-[50px]"
+        class="h-[120px] scale-[200%] relative bottom-[50px] transition-transform duration-500"
         [ngStyle]="{ left: computedTrainLeftOffset + 'px' }"
       />
     </div>
   </div>
-</div>
-<!-- PARALLAX SECTION 2 -->
-<div class="relative">
-  <div
-    class="h-[300vh] flex flex-col justify-center items-end w-[90%] mx-auto py-[500px] box-border"
-  >
-    <app-fade-in-on-view>
-      <p class="background-text">
-        <span class="emphasis">Designing</span> Systems
-      </p>
-    </app-fade-in-on-view>
-    <app-fade-in-on-view>
-      <p class="background-text"><span class="emphasis">Fixing</span> Bugs</p>
-    </app-fade-in-on-view>
-    <app-fade-in-on-view>
-      <p class="background-text">
-        <span class="emphasis">Reviewing</span> Code
-      </p>
-    </app-fade-in-on-view>
-    <app-fade-in-on-view>
-      <p class="background-text">
-        <span class="emphasis">Testing</span> Software
-      </p>
-    </app-fade-in-on-view>
-    <app-fade-in-on-view>
-      <p class="background-text">
-        <span class="emphasis">Deploying</span> Applications
-      </p>
-    </app-fade-in-on-view>
-    <app-fade-in-on-view>
-      <p class="background-text">
-        <span class="emphasis">Automating</span> Tasks
-      </p>
-    </app-fade-in-on-view>
-    <app-fade-in-on-view>
-      <p class="background-text">
-        <span class="emphasis">Integrating</span> Services
-      </p>
-    </app-fade-in-on-view>
-    <app-fade-in-on-view>
-      <p class="background-text">
-        <span class="emphasis">Optimizing</span> Performance
-      </p>
-    </app-fade-in-on-view>
-    <app-fade-in-on-view>
-      <p class="background-text">
-        <span class="emphasis">Managing</span> Databases
-      </p>
-    </app-fade-in-on-view>
-    <app-fade-in-on-view>
-      <p class="background-text">
-        <span class="emphasis">Securing</span> Systems
-      </p>
-    </app-fade-in-on-view>
-    <app-fade-in-on-view>
-      <p class="background-text">
-        <span class="emphasis">Documenting</span> Features
-      </p>
-    </app-fade-in-on-view>
-    <app-fade-in-on-view>
-      <p class="background-text">
-        <span class="emphasis">Analyzing</span> Requirements
-      </p>
-    </app-fade-in-on-view>
-    <app-fade-in-on-view>
-      <p class="background-text">
-        <span class="emphasis">Generating</span> Value
-      </p>
-    </app-fade-in-on-view>
-    <app-fade-in-on-view>
-      <p class="background-text">
-        <span class="emphasis">Simplifying</span> Lives
-      </p>
-    </app-fade-in-on-view>
-  </div>
-  <div
-    class="h-[300vh] w-full box-content absolute top-0 left-0"
-    #parallaxDivTarget
-  >
+</app-parallax-section>
+
+<!-- PARALLAX SECTION 2 -->'
+<app-parallax-section>
+  <div static-background>
     <div
-      class="w-full h-screen sticky top-0 flex flex-col items-end justify-end overflow-hidden"
-      #scrollingDiv
+      class="w-[90%] mx-auto flex flex-col pt-[100vh] justify-center items-end gap-10"
     >
-      <div class="w-full h-full flex items-center justify-start">
-        <div class="mx-auto w-[90%]">
-          <h1 class="text-[5rem] m-0 leading-20 font-bold w-[50%]">
-            Being an engineer isnt just about writing code.
-          </h1>
-          <h1
-            class="text-[7rem] mt-10 leading-25 font-bold w-[50%] emphasis-text"
-          >
-            It's about things that are
-            <span class="emphasis">much greater</span>.
-          </h1>
-        </div>
-      </div>
-      <img
-        #svgRef
-        src="train.png"
-        class="h-[120px] scale-[200%] relative bottom-[50px]"
-        [ngStyle]="{ left: computedTrainLeftOffset + 'px' }"
-      />
+      <app-fade-in-on-view>
+        <p class="background-text">
+          <span class="emphasis">Designing</span> Systems
+        </p>
+      </app-fade-in-on-view>
+      <app-fade-in-on-view
+        ><p class="background-text">
+          <span class="emphasis">Fixing</span> Bugs
+        </p></app-fade-in-on-view
+      >
+      <app-fade-in-on-view
+        ><p class="background-text">
+          <span class="emphasis">Reviewing</span> Code
+        </p></app-fade-in-on-view
+      >
+      <app-fade-in-on-view
+        ><p class="background-text">
+          <span class="emphasis">Testing</span> Software
+        </p></app-fade-in-on-view
+      >
+      <app-fade-in-on-view
+        ><p class="background-text">
+          <span class="emphasis">Deploying</span> Applications
+        </p></app-fade-in-on-view
+      >
+      <app-fade-in-on-view
+        ><p class="background-text">
+          <span class="emphasis">Automating</span> Tasks
+        </p></app-fade-in-on-view
+      >
+      <app-fade-in-on-view
+        ><p class="background-text">
+          <span class="emphasis">Integrating</span> Services
+        </p></app-fade-in-on-view
+      >
+      <app-fade-in-on-view
+        ><p class="background-text">
+          <span class="emphasis">Optimizing</span> Performance
+        </p></app-fade-in-on-view
+      >
+      <app-fade-in-on-view
+        ><p class="background-text">
+          <span class="emphasis">Managing</span> Databases
+        </p></app-fade-in-on-view
+      >
+      <app-fade-in-on-view
+        ><p class="background-text">
+          <span class="emphasis">Securing</span> Systems
+        </p></app-fade-in-on-view
+      >
+      <app-fade-in-on-view
+        ><p class="background-text">
+          <span class="emphasis">Documenting</span> Features
+        </p></app-fade-in-on-view
+      >
+      <app-fade-in-on-view
+        ><p class="background-text">
+          <span class="emphasis">Analyzing</span> Requirements
+        </p></app-fade-in-on-view
+      >
+      <app-fade-in-on-view
+        ><p class="background-text">
+          <span class="emphasis">Generating</span> Value
+        </p></app-fade-in-on-view
+      >
+      <app-fade-in-on-view
+        ><p class="background-text">
+          <span class="emphasis">Simplifying</span> Lives
+        </p></app-fade-in-on-view
+      >
     </div>
   </div>
-</div>
+  <div scrolling-content class="w-full">
+    <div class="w-full h-full flex items-center justify-start">
+      <div class="mx-auto w-[90%]">
+        <h1 class="text-[3rem] m-0 leading-15 font-bold w-[30%]">
+          Being an engineer isn't just about writing code.
+        </h1>
+        <h1
+          class="text-[5rem] mt-10 leading-20 font-bold w-[40%] emphasis-text"
+        >
+          It's about things that are
+          <span class="emphasis">much greater</span>.
+        </h1>
+      </div>
+    </div>
+  </div>
+</app-parallax-section>
+<app-parallax-section>
+  <div static-background></div>
+  <div scrolling-content>
+    <h1>
+      Currently creating solutions and having a large impact at Turners
+      Automotive Group.
+    </h1>
+    <h2>
+      I currently have {{ yearsOfExperience }} software engineering experience.
+    </h2>
+    <p>Currently a generalist, I do both frontend and backend development</p>
+  </div>
+</app-parallax-section>

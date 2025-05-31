@@ -1,39 +1,61 @@
 import { CommonModule } from '@angular/common';
 import {
-  ChangeDetectorRef,
+  AfterViewInit,
   Component,
-  ElementRef,
   HostListener,
   OnInit,
   ViewChild,
 } from '@angular/core';
 import code from './code';
-import { FadeInOnViewComponent } from "../fade-in-on-view/fade-in-on-view.component";
+import { FadeInOnViewComponent } from '../fade-in-on-view/fade-in-on-view.component';
+import { ParallaxSectionComponent } from '../parallax-section/parallax-section.component';
+
 @Component({
   selector: 'app-career',
-  imports: [CommonModule, FadeInOnViewComponent],
+  imports: [CommonModule, FadeInOnViewComponent, ParallaxSectionComponent],
   templateUrl: './career.component.html',
   styleUrl: './career.component.scss',
 })
-export class CareerComponent implements OnInit {
+export class CareerComponent implements OnInit, AfterViewInit {
   prevScrollPos = window.scrollY || document.documentElement.scrollTop;
   code = code;
+
   computedTrainLeftOffset: number =
     (window?.visualViewport?.width || 2000) * -2;
-  constructor(private cdr: ChangeDetectorRef) {}
-  @ViewChild('parallaxDivTarget') targetDiv?: ElementRef<HTMLDivElement>;
-  @ViewChild('scrollingDiv') scrollingDiv?: ElementRef<HTMLDivElement>;
-  @ViewChild('parallaxDivTarget') svgRef?: ElementRef<HTMLDivElement>;
+
+  private targetDiv?: HTMLDivElement;
+  private scrollingDiv?: HTMLDivElement;
+
+  @ViewChild('parallaxSection') parallaxSection!: ParallaxSectionComponent;
+
+  yearsOfExperience = '0';
+
+  ngOnInit(): void {
+    const millisecondsToHoursFactor = 1000 * 60 * 60;
+    const hoursToYearsFactor = 24 * 365.25;
+    const yearsOfExperience =
+      (new Date().getTime() - new Date(2022, 6, 1).getTime()) /
+      (millisecondsToHoursFactor * hoursToYearsFactor);
+
+    let years = Math.floor(yearsOfExperience);
+    let months = Math.ceil(12 * (yearsOfExperience - years)); // <- round here
+    if (months === 12) {
+      years += 1;
+      months = 0;
+    }
+    this.yearsOfExperience = `${years} years ${
+      months > 0 ? `${months} months` : ''
+    }`;
+  }
+
+  ngAfterViewInit(): void {
+    this.targetDiv = this.parallaxSection?.getTargetElement();
+    this.scrollingDiv = this.parallaxSection?.getScrollingElement();
+  }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    if (
-      !this.targetDiv ||
-      !this.svgRef ||
-      !this.scrollingDiv ||
-      !window.visualViewport
-    )
-      return;
+    if (!this.targetDiv || !this.scrollingDiv || !window.visualViewport) return;
 
     const scrollY = window.scrollY || document.documentElement.scrollTop;
 
@@ -41,19 +63,16 @@ export class CareerComponent implements OnInit {
     const viewportTop = scrollY;
     const viewportBottom = viewportTop + viewportHeight;
 
-    console.log(viewportBottom);
-
-    const scrollingRect =
-      this.scrollingDiv.nativeElement.getBoundingClientRect();
+    const scrollingRect = this.scrollingDiv.getBoundingClientRect();
     const scrollingTop = scrollingRect.top + scrollY;
     const scrollingHeight = scrollingRect.height;
     const scrollingBottom = scrollingTop + scrollingHeight;
 
-    const targetRect = this.targetDiv.nativeElement.getBoundingClientRect();
+    const targetRect = this.targetDiv.getBoundingClientRect();
     const targetTop = targetRect.top + scrollY;
     const targetHeight = targetRect.height;
 
-    const svgWidth = this.svgRef.nativeElement.offsetWidth;
+    const svgWidth = this.scrollingDiv.offsetWidth;
 
     const isTopAligned = viewportTop >= scrollingTop;
     const isBottomAligned = viewportBottom <= scrollingBottom;
@@ -72,6 +91,4 @@ export class CareerComponent implements OnInit {
       this.computedTrainLeftOffset = offset * 4 - svgWidth * 4;
     }
   }
-
-  ngOnInit(): void {}
 }
